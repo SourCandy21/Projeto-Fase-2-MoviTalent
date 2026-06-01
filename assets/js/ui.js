@@ -50,6 +50,13 @@ export function getFilters() {
   };
 }
 
+export function resetItemFilters() {
+  els.searchInput.value = "";
+  els.categoryFilter.value = "todos";
+  els.cityFilter.value = "todos";
+  els.statusFilter.value = "todos";
+}
+
 export function renderItems(items) {
   const filters = getFilters();
   const filtered = items.filter((item) => {

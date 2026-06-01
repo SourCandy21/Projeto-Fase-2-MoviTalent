@@ -1,5 +1,5 @@
 import { addAlert, addBid, cancelFirstActiveItem, createItem, finishItem, saveProfile, state } from "./store.js";
-import { bindElements, fillSelectOptions, renderAlerts, renderDashboard, renderItemModal, renderItems, showFormMessage } from "./ui.js";
+import { bindElements, fillSelectOptions, renderAlerts, renderDashboard, renderItemModal, renderItems, resetItemFilters, showFormMessage } from "./ui.js";
 
 const els = bindElements();
 fillSelectOptions();
@@ -26,8 +26,11 @@ els.itemsGrid.addEventListener("click", (event) => {
 document.querySelector("#itemForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = readItemForm();
+  if (!formData) return;
+
   const item = createItem(formData);
   event.target.reset();
+  resetItemFilters();
   refreshAll();
   showFormMessage("success", `Anúncio "${item.title}" publicado com sucesso. Ele já aparece na busca e no painel.`);
   location.hash = "#itens";
