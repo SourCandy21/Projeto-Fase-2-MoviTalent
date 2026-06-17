@@ -16,9 +16,12 @@ Protótipo funcional para concurso: marketplace de reuso, doação, retirada e d
 ## Arquitetura
 
 ```text
-outputs/
+reviva/
   index.html
+  package.json
   README.md
+  ROTEIRO-VIDEO.md
+  server.js
   assets/
     css/
       main.css
@@ -34,6 +37,9 @@ outputs/
 ## Responsabilidade dos arquivos
 
 - `index.html`: estrutura das telas, modais e formulários.
+- `package.json`: scripts para rodar e checar o projeto.
+- `server.js`: servidor local simples para abrir o protótipo com JavaScript modular.
+- `ROTEIRO-VIDEO.md`: roteiro sugerido para a apresentação de até 5 minutos.
 - `assets/css/main.css`: identidade visual, layout responsivo e componentes.
 - `assets/img/reviva-logo.svg`: logo vetorial da ReViva.
 - `assets/js/data.js`: categorias, cidades e itens fictícios.
@@ -41,25 +47,48 @@ outputs/
 - `assets/js/ui.js`: renderização dos cards, modais, alertas e painel.
 - `assets/js/app.js`: eventos dos formulários, botões e inicialização.
 
-## Como abrir
+## Como rodar na sua máquina
 
-Como o projeto usa JavaScript modular, abra com um servidor local.
-
-Com Node instalado:
+Como o projeto usa JavaScript modular, abra com um servidor local. Com Node instalado, entre na pasta do projeto e rode:
 
 ```bash
-npx serve .
+npm start
 ```
 
-Ou publique direto no GitHub Pages apontando para a pasta do projeto.
+Depois acesse:
+
+```text
+http://127.0.0.1:8080
+```
+
+Para checar a sintaxe dos arquivos JavaScript:
+
+```bash
+npm run check
+```
+
+## Como subir para o GitHub
+
+1. Crie um repositório vazio no GitHub, por exemplo `reviva`.
+2. No terminal, entre na pasta do projeto.
+3. Rode os comandos abaixo, trocando `SEU-USUARIO` pelo seu usuário do GitHub:
+
+```bash
+git remote add origin https://github.com/SEU-USUARIO/reviva.git
+git push -u origin main
+```
+
+## Como publicar no GitHub Pages
+
+Depois do push:
+
+1. Abra o repositório no GitHub.
+2. Entre em `Settings`.
+3. Clique em `Pages`.
+4. Em `Build and deployment`, escolha `Deploy from a branch`.
+5. Em `Branch`, selecione `main` e a pasta `/root`.
+6. Salve e aguarde o GitHub gerar o link público.
 
 ## Roteiro sugerido para o vídeo
 
-1. Apresente o problema: itens úteis acabam virando descarte.
-2. Mostre a solução ReViva e o logo.
-3. Demonstre o cadastro de perfil.
-4. Publique um anúncio novo.
-5. Busque o anúncio e abra os detalhes.
-6. Envie um lance e simule o fim do prazo.
-7. Crie um alerta por categoria e cidade.
-8. Feche com o impacto: economia, reaproveitamento e destinação correta.
+Use o arquivo `ROTEIRO-VIDEO.md`.

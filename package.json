@@ -1,0 +1,11 @@
+{
+  "name": "reviva-prototipo",
+  "version": "1.0.0",
+  "description": "Protótipo funcional da ReViva, marketplace de reuso e retirada consciente.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check assets/js/app.js && node --check assets/js/data.js && node --check assets/js/store.js && node --check assets/js/ui.js && node --check server.js"
+  },
+  "devDependencies": {}
+}
