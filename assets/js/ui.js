@@ -77,18 +77,28 @@ export function renderItems(items) {
 
 function itemCard(item) {
   const statusClass = item.status.toLowerCase().split(" ")[0];
+
   return `
     <article class="item-card">
-      <img src="${item.image}" alt="${item.title}">
+      <img
+        src="${item.image}"
+        alt="${item.title}"
+        onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=900&q=80'">
+
       <div class="item-card-body">
         <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
           <span class="status-pill ${statusClass}">${item.status}</span>
           <small class="text-secondary">${item.distance}</small>
         </div>
+
         <h3 class="item-title">${item.title}</h3>
         <p class="text-secondary mb-2">${item.city} • ${item.category}</p>
         <p class="mb-3"><strong>${item.quantity}</strong> • ${item.duration}</p>
-        <button class="btn btn-success w-100" data-open-item="${item.id}">Ver detalhes e lances</button>
+
+        <button class="btn btn-success w-100"
+          data-open-item="${item.id}">
+          Ver detalhes e lances
+        </button>
       </div>
     </article>
   `;
@@ -96,21 +106,86 @@ function itemCard(item) {
 
 export function renderItemModal(itemId) {
   const item = findItem(itemId);
+
+  if (!item) {
+    console.error("Item não encontrado:", itemId);
+
+    els.modalTitle.textContent = "Item não encontrado";
+    els.modalDescription.textContent =
+      "Não foi possível carregar os detalhes deste anúncio.";
+
+    els.modalMeta.innerHTML = "";
+    els.bidsList.innerHTML = "";
+
+    return;
+  }
+
   state.selectedItemId = item.id;
+
+  // Dados principais
   els.modalTitle.textContent = item.title;
+  els.modalDescription.textContent = item.description;
+
+  // Imagem
   els.modalImage.src = item.image;
   els.modalImage.alt = item.title;
-  els.modalDescription.textContent = item.description;
+
+  // Imagem padrão caso a URL falhe
+  els.modalImage.onerror = () => {
+    els.modalImage.src =
+      "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=900&q=80";
+
+    els.modalImage.onerror = null;
+  };
+
+  const statusClass = item.status
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+
   els.modalMeta.innerHTML = `
-    <div><strong>Categoria:</strong> ${item.category}</div>
-    <div><strong>Local:</strong> ${item.city}, ${item.neighborhood} (${item.distance})</div>
-    <div><strong>Quantidade:</strong> ${item.quantity}</div>
-    <div><strong>Estado:</strong> ${item.condition}</div>
-    <div><strong>Duração:</strong> ${item.duration}</div>
-    <div><strong>Preferência:</strong> ${item.preferredDeal}</div>
-    <div><strong>Retirada:</strong> ${item.pickupNotes}</div>
-    <div><strong>Status:</strong> ${item.status}</div>
+    <div class="meta-item">
+      <strong>Categoria</strong>
+      <span>${item.category}</span>
+    </div>
+
+    <div class="meta-item">
+      <strong>Localização</strong>
+      <span>${item.city}, ${item.neighborhood} (${item.distance})</span>
+    </div>
+
+    <div class="meta-item">
+      <strong>Quantidade</strong>
+      <span>${item.quantity}</span>
+    </div>
+
+    <div class="meta-item">
+      <strong>Estado</strong>
+      <span>${item.condition}</span>
+    </div>
+
+    <div class="meta-item">
+      <strong>Duração</strong>
+      <span>${item.duration}</span>
+    </div>
+
+    <div class="meta-item">
+      <strong>Preferência</strong>
+      <span>${item.preferredDeal}</span>
+    </div>
+
+    <div class="meta-item">
+      <strong>Retirada</strong>
+      <span>${item.pickupNotes}</span>
+    </div>
+
+    <div class="meta-item">
+      <strong>Status</strong>
+      <span class="status-pill ${statusClass}">
+        ${item.status}
+      </span>
+    </div>
   `;
+
   renderBids(item);
 }
 

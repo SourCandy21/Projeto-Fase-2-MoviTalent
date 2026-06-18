@@ -112,6 +112,14 @@ function readItemForm(requireValidity = true) {
   const form = document.querySelector("#itemForm");
   if (requireValidity && !form.reportValidity()) return null;
 
+  const fileInput = document.querySelector("#imageUrl");
+
+  let imageUrl = "";
+
+  if (fileInput.files.length > 0) {
+    imageUrl = URL.createObjectURL(fileInput.files[0]);
+  }
+
   return {
     title: document.querySelector("#title").value,
     category: document.querySelector("#category").value,
@@ -124,7 +132,7 @@ function readItemForm(requireValidity = true) {
     distance: document.querySelector("#distance").value,
     address: document.querySelector("#address").value,
     pickupNotes: document.querySelector("#pickupNotes").value,
-    imageUrl: document.querySelector("#imageUrl").value,
+    imageUrl,
     preferredDeal: document.querySelector("#preferredDeal").value
   };
 }
