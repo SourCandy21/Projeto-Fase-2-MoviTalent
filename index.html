@@ -97,16 +97,16 @@
           <div class="col-lg-5">
             <div class="impact-panel">
               <div>
-                <span class="metric">128</span
-                ><small>itens desviados do descarte</small>
+                <span class="metric">128</span>
+                <small>itens desviados do descarte</small>
               </div>
               <div>
-                <span class="metric">42 t</span
-                ><small>volume reaproveitado</small>
+                <span class="metric">42 t</span>
+                <small>volume reaproveitado</small>
               </div>
               <div>
-                <span class="metric">31</span
-                ><small>negócios fechados este mês</small>
+                <span class="metric">31</span>
+                <small>negócios fechados este mês</small>
               </div>
             </div>
           </div>
@@ -179,20 +179,13 @@
       </section>
 
       <section class="container section-tight" id="anunciar">
-        <div class="row g-5">
-          <div class="col-lg-4 publish-info">
+        <div class="row justify-content-center g-5">
+          <div class="col-lg-4 justify-content- publish-info">
             <p class="eyebrow">Publicar anúncio</p>
             <h2>Novo item</h2>
             <p class="text-secondary">
-              O formulário simula uma publicação real: valida os campos, gera
-              uma prévia, adiciona o item na listagem e registra o anúncio no
-              painel.
+              O formulário simula uma publicação real: valida os campos, adiciona o item na listagem e registra o anúncio.
             </p>
-            <div class="publish-steps">
-              <span class="active">Dados</span>
-              <span>Local</span>
-              <span>Publicação</span>
-            </div>
             <div id="formMessage" class="alert d-none mt-3" role="alert"></div>
           </div>
           <div class="col-lg-8">
@@ -314,10 +307,9 @@
                 <div class="col-md-7">
                   <label class="form-label" for="imageUrl">URL da foto</label>
                   <input
-                    type="file"
+                    type="url"
                     id="imageUrl"
                     class="form-control"
-                    accept="image/*"
                     placeholder="Cole uma URL ou deixe em branco para imagem padrão"
                   />
                 </div>
@@ -334,13 +326,6 @@
                 <div class="col-12 d-grid d-sm-flex gap-2">
                   <button class="btn btn-success btn-lg" type="submit">
                     Publicar anúncio
-                  </button>
-                  <button
-                    class="btn btn-outline-secondary btn-lg"
-                    type="button"
-                    id="previewAd"
-                  >
-                    Gerar prévia
                   </button>
                   <button
                     class="btn btn-outline-danger btn-lg"
@@ -496,16 +481,6 @@
                     class="form-control"
                     required
                     placeholder="Ex: Maria Silva"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Foto do Perfil</label>
-
-                  <input
-                    type="file"
-                    id="profilePhoto"
-                    class="form-control"
-                    accept="image/*"
                   />
                 </div>
                 <div class="col-md-6">

@@ -36,15 +36,6 @@ document.querySelector("#itemForm").addEventListener("submit", (event) => {
   location.hash = "#itens";
 });
 
-document.querySelector("#previewAd").addEventListener("click", () => {
-  const formData = readItemForm(false);
-  if (!formData.title || !formData.category) {
-    showFormMessage("warning", "Preencha pelo menos nome e categoria para gerar uma prévia.");
-    return;
-  }
-  showFormMessage("info", `Prévia: ${formData.title} • ${formData.category} • ${formData.city || "cidade ainda não informada"}.`);
-});
-
 document.querySelector("#cancelOffer").addEventListener("click", () => {
   const item = cancelFirstActiveItem();
   if (!item) {
